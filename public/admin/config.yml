@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: jeremy193a/blog # TODO: set to your repo, e.g. quangha/blog
+  branch: main
+  site_domain: maketechatease.netlify.app # TODO: set if using Netlify auth
+  base_url: https://api.netlify.com # default for Netlify Identity; adjust if self-hosting
+  auth_endpoint: /api/v1/auth
+
+media_folder: "src/assets/blog"
+public_folder: "../../assets/blog"
+
+site_url: "https://quangha.me"
+display_url: "https://quangha.me"
+logo_url: "/favicon.svg"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    label_singular: "Post"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Author", name: "author", widget: "string", default: "Anonymous" }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Updated Date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
