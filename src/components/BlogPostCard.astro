@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  isLead?: boolean;
+}
+
+const { post, isLead = false } = Astro.props;
+const { title, description, pubDate, author, image } = post.data;
+const cover = image || '/images/og-default.jpg';
+---
+
+<a href={`/blog/${post.slug}/`} class={`card${isLead ? ' card-lead' : ''}`}>
+  <div class="card-media">
+    <img src={cover} alt={`Cover image for ${title}`} loading="lazy" />
+  </div>
+  <div class="card-top-line" aria-hidden="true"></div>
+  <div class="card-content">
+    <div class="card-meta">
+      <span class="author">{author}</span>
+      <time datetime={pubDate.toISOString()}>
+        {pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })}
+      </time>
+    </div>
+    <h3 class="card-title">{title}</h3>
+    <p class="card-description">{description}</p>
+  </div>
+</a>

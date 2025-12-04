@@ -1,0 +1,151 @@
+---
+// This component will be the search UI
+---
+
+<div id="search-container">
+  <button id="search-open" class="search-button" aria-label="Open Search">
+    🔍 Search
+  </button>
+  <div id="search-ui-root" class="search-ui" hidden>
+    <div class="search-ui-scrim" data-close></div>
+    <div class="search-ui-panel">
+      <button class="search-close" type="button" aria-label="Close Search" data-close>✕</button>
+      <div id="pagefind-ui"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const searchButton = document.getElementById('search-open') as HTMLButtonElement | null;
+  const searchRoot = document.getElementById('search-ui-root') as HTMLElement | null;
+  const searchCloseEls = Array.from(document.querySelectorAll('[data-close]')) as HTMLElement[];
+
+  if (!searchButton || !searchRoot) {
+    console.warn('Search UI missing elements');
+  }
+
+  const getPagefindImportPath = () => {
+    const base = import.meta.env.BASE_URL ?? '/';
+    const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+    return `${normalizedBase}pagefind/pagefind-ui.js`;
+  };
+
+  let uiInstance: any = null;
+  let loading = false;
+
+  const openSearch = async () => {
+    if (!searchButton || !searchRoot) return;
+    if (loading) return;
+    if (import.meta.env.DEV) {
+      alert('Search is available after `npm run build && npx pagefind --source dist`.');
+      return;
+    }
+    loading = true;
+    const original = searchButton.textContent;
+    searchButton.textContent = 'Loading…';
+    searchButton.disabled = true;
+    try {
+      if (!uiInstance) {
+        const pagefindModule = await import(/* @vite-ignore */ getPagefindImportPath());
+        const PagefindUI = pagefindModule?.PagefindUI || pagefindModule?.default;
+        if (!PagefindUI) throw new Error('Pagefind UI not found');
+        uiInstance = new PagefindUI({
+          element: '#pagefind-ui',
+          autofocus: true,
+          showImages: false,
+        });
+      }
+      searchRoot.hidden = false;
+      searchRoot.classList.add('open');
+    } catch (e) {
+      console.error('Pagefind failed to load:', e);
+      alert('Search is not available. This may be a build issue.');
+    } finally {
+      searchButton.disabled = false;
+      searchButton.textContent = original;
+      loading = false;
+    }
+  };
+
+  const closeSearch = () => {
+    if (!searchRoot) return;
+    searchRoot.classList.remove('open');
+    searchRoot.hidden = true;
+  };
+
+  searchButton?.addEventListener('click', openSearch);
+  searchCloseEls.forEach((el) => el.addEventListener('click', closeSearch));
+</script>
+
+<style>
+  .search-button {
+    background: linear-gradient(135deg, rgba(106, 166, 216, 0.18), rgba(106, 166, 216, 0.05));
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.55rem 1.05rem;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .search-button:hover:not([disabled]) {
+    background-color: var(--color-border);
+    color: var(--color-text);
+    box-shadow: 0 10px 30px rgba(12, 31, 52, 0.16);
+    transform: translateY(-1px);
+  }
+
+  .search-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .search-ui {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+  }
+
+  .search-ui.open {
+    display: block;
+  }
+
+  .search-ui-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 10, 20, 0.45);
+    backdrop-filter: blur(6px);
+  }
+
+  .search-ui-panel {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(720px, 92vw);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1rem 1rem 0.5rem;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .search-close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    border-radius: 999px;
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+  }
+
+  #pagefind-ui {
+    padding-top: 0.25rem;
+  }
+</style>

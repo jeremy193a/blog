@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
+  
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const publishedTime = post.data.pubDate.toISOString();
+const modifiedTime = post.data.updatedDate?.toISOString();
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}
+  type="article"
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  author={post.data.author}
+>
+  <article class="article-shell">
+    <header class="article-header">
+      <p class="eyebrow">Field notes</p>
+      <h1 class="article-title">{post.data.title}</h1>
+      <div class="article-meta">
+        <span>
+          <time datetime={publishedTime}>
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          {post.data.updatedDate && (
+            <>
+              {' · '}
+              <time datetime={modifiedTime}>
+                Updated {post.data.updatedDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+            </>
+          )}
+        </span>
+        {post.data.author && <span>{post.data.author}</span>}
+      </div>
+    </header>
+    
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
