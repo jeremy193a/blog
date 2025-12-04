@@ -1,11 +1,15 @@
 import { defineConfig } from 'astro/config';
+import wikiLinkPlugin from 'remark-wiki-link';
 
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://yourdomain.com', // Replace with your actual domain
+  site: 'https://quangha.me', // Replace with your actual domain
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',
   },
+  markdown: {
+    remarkPlugins: [
+      [wikiLinkPlugin, { hrefTemplate: (permalink) => `/blog/${permalink}` }]
+    ]
+  }
 });
-

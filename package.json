@@ -12,11 +12,12 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.7",
-    "astro": "^5.15.9"
+    "astro": "^5.15.9",
+    "remark-wiki-link": "^2.0.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.3",
-    "typescript": "^5.6.2",
-    "pagefind": "^1.0.4"
+    "pagefind": "^1.0.4",
+    "typescript": "^5.6.2"
   }
 }

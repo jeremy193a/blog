@@ -8,6 +8,8 @@ draft: false
 ---
 Đây sẽ là một bài viết không chứa "AI đã giúp tôi làm điều này trong 3 giây", hay "tôi đã vibe code ra...trong 30p" mà sẽ mang đến cho bạn guide từ A-Z, cái nhìn toàn cảnh, những sự thật mất lòng về build với AI, những tips and trick để bạn làm chủ AI để tăng tốc thật sự trong công việc, cuộc sống.
 
+![meme.webp](../../assets/blog/meme.webp)
+
 **Disclaimer:** 
 - Bài hướng dẫn được viết với góc nhìn của mình, một người có background là marketing, business development, không học code nhưng có niềm đam mê bất tận với công nghệ và AI. 
 - Bài hướng dẫn dành cho các bạn mới non-tech, marketer chưa full-stack, chưa biết gì về code, đang sử dụng AI chủ yếu qua chat, muốn khám phá khả năng xây dựng và làm chủ sản phẩm từ AI. Vì mình tin, nếu không nắm bắt ngay từ bây giờ, khoản cách giữa người biết AI và sử dụng AI sẽ được kéo giãn.
