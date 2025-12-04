@@ -1,10 +1,7 @@
 backend:
-  name: github
+  name: git-gateway
   repo: jeremy193a/blog # TODO: set to your repo, e.g. quangha/blog
   branch: main
-  site_domain: maketechatease.netlify.app # TODO: set if using Netlify auth
-  base_url: https://api.netlify.com # default for Netlify Identity; adjust if self-hosting
-  auth_endpoint: /api/v1/auth
 
 media_folder: "src/assets/blog"
 public_folder: "../../assets/blog"

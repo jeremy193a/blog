@@ -3,7 +3,7 @@ title: 'Hướng dẫn chi tiết tạo landing page với AI và publish dướ
 description: 'Hướng dẫn nhanh cho người không chuyên công nghệ dùng AI để tạo và triển khai landing page, kết nối GitHub và xuất bản trên Netlify.'
 pubDate: 2025-12-02
 author: 'Anonymous'
-image: '/images/lead-landing.webp'
+image: '/images/meme.webp'
 draft: false
 ---
 Đây sẽ là một bài viết không chứa "AI đã giúp tôi làm điều này trong 3 giây", hay "tôi đã vibe code ra...trong 30p" mà sẽ mang đến cho bạn guide từ A-Z, cái nhìn toàn cảnh, những sự thật mất lòng về build với AI, những tips and trick để bạn làm chủ AI để tăng tốc thật sự trong công việc, cuộc sống.
@@ -24,8 +24,8 @@ Khả năng prompting là cần thiết, nhưng khi khả năng thinking của A
 ### Prompt ở đâu?
 
 Hiện có những nền tảng sau đây mình cho là rất ổn khi bắt đầu cho việc build landing page hay cả những sản phẩm phức tạp hơn một chút như web app:
-- [**Google AI Studio](https://aistudio.google.com):** không cần tài khoản Gemini Pro để bắt đầu build với Google AI Studio. Google AI Studio với Gemini 3 Pro có khả năng build giao diện khá ổn. Ngoài ra thì Nano Banana gen hình tốt có thể làm cho landing page bắt máy hơn.
-- [**Lovable](https://lovable.dev/):** 5 credit free hằng ngày, nếu share cho bạn bè thì nhận được thêm 15 credit nữa. Build giao diện đẹp, prompt cơ bản mất tầm 2 credit, 1 ngày có thể prompt được 3 lần tùy vào độ phức tạp của prompt
+- **[Google AI Studio](https://aistudio.google.com):** không cần tài khoản Gemini Pro để bắt đầu build với Google AI Studio. Google AI Studio với Gemini 3 Pro có khả năng build giao diện khá ổn. Ngoài ra thì Nano Banana gen hình tốt có thể làm cho landing page bắt máy hơn.
+- **[Lovable](https://lovable.dev/):** 5 credit free hằng ngày, nếu share cho bạn bè thì nhận được thêm 15 credit nữa. Build giao diện đẹp, prompt cơ bản mất tầm 2 credit, 1 ngày có thể prompt được 3 lần tùy vào độ phức tạp của prompt
 - **[V0](v0.app):** với mình V0 là nền tảng backup cho 2 nền tảng trên khi bạn cần thêm ý tưởng.
 
 Điểm chung của 3 nền tảng này, là có thể connect với GitHub. GitHub như một ngân hàng lưu trữ source code của riêng bạn, và miễn phí. Ở đây để demo, mình sẽ sử dụng Lovable và Google AI Studio, nền tảng nào ra UI đẹp thì mình sử dụng. Project trong bài hướng dẫn này sẽ là build một landing page để xây portfolio cho một bạn BD ngành nội thất, xây dựng.
