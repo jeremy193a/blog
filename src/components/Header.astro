@@ -1,19 +1,16 @@
 ---
 import ThemeToggleButton from './ThemeToggleButton.astro';
-import Search from './Search.astro';
-
 const { pathname } = Astro.url;
 ---
 
 <header class="header" data-pagefind-ignore="all">
   <a href="#main-content" class="skip-to-content">Skip to content</a>
   <nav class="nav-container minimal-nav">
-    <a href="/" class="logo-mark" aria-label="Astro Blog">
+    <a href="/" class="logo-mark" aria-label="Quang Ha Blog">
       <span class="logo-dot" aria-hidden="true"></span>
-      <span class="logo-word">Astro Journal</span>
+      <span class="logo-word">Quang Ha</span>
     </a>
     <div class="nav-actions">
-      <Search />
       <ThemeToggleButton />
     </div>
   </nav>

@@ -2,7 +2,7 @@
 title: 'Hướng dẫn chi tiết tạo landing page với AI và publish dưới tên miền của bạn'
 description: 'Hướng dẫn nhanh cho người không chuyên công nghệ dùng AI để tạo và triển khai landing page, kết nối GitHub và xuất bản trên Netlify.'
 pubDate: 2025-12-02
-author: 'Anonymous'
+author: 'Quang Ha'
 image: '/images/meme.webp'
 draft: false
 ---

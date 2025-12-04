@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPostCard from '../components/BlogPostCard.astro';
-import Search from '../components/Search.astro';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -10,29 +9,19 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
 const featuredPost = sortedPosts[0];
 const otherPosts = sortedPosts.slice(1);
 
-const siteTitle = 'Astro Journal';
-const siteDescription = 'Calm, typographic essays on building web experiences.';
+const siteTitle = 'Quang Ha';
+const siteDescription = 'Chào mừng tới blog của Hà. Mình chủ yếu viết những hướng dẫn từ tâm về công nghệ, AI và mọi thứ';
 ---
 
 <BaseLayout title={siteTitle} description={siteDescription}>
   <section class="hero hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">Swiss minimal journal</p>
-      <h1 class="hero-title">{siteTitle}</h1>
+      <h1 class="hero-title">Make Tech At Ease</h1>
       <p class="hero-description">{siteDescription}</p>
       <div class="hero-actions">
         <a class="primary-link" href="#latest">Read the latest</a>
-        <Search />
       </div>
     </div>
-    <figure class="hero-visual">
-      <img
-        src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1920&q=80"
-        alt="Minimalist desk with notebook and tablet in natural light"
-        loading="lazy"
-      />
-      <figcaption>Quiet workspace, clear ideas.</figcaption>
-    </figure>
   </section>
 
   {featuredPost && (
