@@ -17,7 +17,7 @@ export interface Props {
 const {
   title,
   description,
-  image = '/images/og-default.jpg',
+  image = '/images/og-image.webp',
   type = 'website',
   publishedTime,
   modifiedTime,
@@ -25,7 +25,7 @@ const {
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
 } = Astro.props;
 
-const siteName = 'Quang Ha';
+const siteName = 'Quang Hà - Make Tech At Ease';
 const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 
 const jsonLd = type === 'article' ? {
